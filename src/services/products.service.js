@@ -11,7 +11,7 @@ const findById = async (passengerId) => {
   if (error.type) return error;
 
   const product = await productModel.findById(passengerId);
-  if (!product) return { type: 'PASSENGER_NOT_FOUND', message: 'Product not found' };
+  if (!product) return { type: 'PRODUCT_NOT_FOUND', message: 'Product not found' };
 
   return { type: null, message: product };
 };
