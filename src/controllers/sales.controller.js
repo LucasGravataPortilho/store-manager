@@ -1,5 +1,4 @@
 const { saleService } = require('../services');
-const errorMap = require('../utils/errorMap');
 
 const createSale = async (req, res, next) => {
   try {
