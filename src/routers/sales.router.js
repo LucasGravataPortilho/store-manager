@@ -6,6 +6,8 @@ const router = express.Router();
 
 router.get('/', saleController.findAll);
 
+router.get('/:id', saleController.findById);
+
 router.post('/', validateObj, saleController.createSale);
 
 

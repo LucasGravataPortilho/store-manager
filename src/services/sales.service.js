@@ -5,6 +5,12 @@ const findAll = async () => {
   return result;
 };
 
+const findById = async (id) => {
+  const result = await saleModel.findById(id);
+  
+  return result;
+};
+
 const createSale = async (sale) => {
   const checkSales = sale.map(({ productId }) => productModel.findById(productId));
   const checkSalesResolve = await Promise.all(checkSales);
@@ -22,5 +28,6 @@ const createSale = async (sale) => {
 
 module.exports = {
   findAll,
+  findById,
   createSale,
 };
