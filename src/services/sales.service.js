@@ -1,5 +1,10 @@
 const { saleModel, productModel } = require('../models');
 
+const findAll = async () => {
+  const result = await saleModel.findAll();
+  return result;
+};
+
 const createSale = async (sale) => {
   const checkSales = sale.map(({ productId }) => productModel.findById(productId));
   const checkSalesResolve = await Promise.all(checkSales);
@@ -16,5 +21,6 @@ const createSale = async (sale) => {
 };
 
 module.exports = {
+  findAll,
   createSale,
 };

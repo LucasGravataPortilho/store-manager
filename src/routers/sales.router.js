@@ -4,6 +4,9 @@ const { validateObj } = require('../middlewares/salesValidation');
 
 const router = express.Router();
 
+router.get('/', saleController.findAll);
+
 router.post('/', validateObj, saleController.createSale);
+
 
 module.exports = router;
