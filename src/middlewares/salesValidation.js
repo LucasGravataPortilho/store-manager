@@ -3,23 +3,29 @@ const { saleSchema } = require('../services/validations/schema');
 
 const errorCheck = (error) => {
   if (error.details[0].type === 'number.min') {
-    throw { status: 422, message: error.message };
+    const err = { status: 422, message: error.message };
+    throw err;
   }
 
   if (error.details[0].type === 'any.required') {
-    throw { status: 400, message: error.message };
+    const err = { status: 400, message: error.message };
+    throw err;
   }
-}
+};
 
 const validateObj = (req, _res, next) => {
-  const sale = req.body;
-  const saleArrSchema = Joi.array().items(saleSchema);
-  const { error } = saleArrSchema.validate(sale);
-  if (error) {
-    errorCheck(error);
+  try {
+    const sale = req.body;
+    const saleArrSchema = Joi.array().items(saleSchema);
+    const { error } = saleArrSchema.validate(sale);
+    if (error) {
+      errorCheck(error);
+    }
+  
+    next();   
+  } catch (e) {
+    next(e);
   }
-
-  next()
 };
 
 // const validateProductId = (req, res, next) => {
