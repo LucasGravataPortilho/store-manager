@@ -1,8 +1,8 @@
 const { saleService } = require('../services');
 
-const findAll = async(_req, res) => {
-  const result = await saleService.findAll();
-  res.status(200).json(result);
+const findAll = async (_req, res) => {
+  const { message } = await saleService.findAll();
+  res.status(200).json(message);
 };
 
 const findById = async (req, res, next) => {

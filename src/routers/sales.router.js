@@ -10,5 +10,4 @@ router.get('/:id', saleController.findById);
 
 router.post('/', validateObj, saleController.createSale);
 
-
 module.exports = router;
