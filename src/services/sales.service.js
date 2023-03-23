@@ -7,8 +7,13 @@ const findAll = async () => {
 
 const findById = async (id) => {
   const result = await saleModel.findById(id);
+
+  if (result.length < 1) {
+    const notFound = { status: 404, message: 'Sale not found' };
+    throw notFound;
+  }
   
-  return result;
+  return { type: null, message: result };
 };
 
 const createSale = async (sale) => {

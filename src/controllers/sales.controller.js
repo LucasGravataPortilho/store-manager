@@ -5,10 +5,14 @@ const findAll = async(_req, res) => {
   res.status(200).json(result);
 };
 
-const findById = async (req, res) => {
-  const { id } = req.params;
-  const result = await saleService.findById(id);
-  res.status(200).json(result);
+const findById = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const { message } = await saleService.findById(id);
+    res.status(200).json(message);
+  } catch (error) {
+    next(error);
+  }
 };
 
 const createSale = async (req, res, next) => {
