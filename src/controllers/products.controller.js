@@ -28,8 +28,30 @@ const createProduct = async (req, res) => {
   res.status(201).json(message);
 };
 
+const updateProduct = async (req, res) => {
+  const { name } = req.body;
+  const { id } = req.params;
+
+  const { type, message } = await productService.updateProducts(name, id);
+
+  if (type === 'PRODUCT_NOT_EXIST') {
+    return res.status(400).json({ message });
+  }
+
+  if (type === 'PRODUCT_NOT_FOUND') {
+    return res.status(404).json({ message });
+  }
+
+  if (type === 'INVALID_VALUE') {
+    return res.status(422).json({ message });
+  }
+
+  res.status(200).json(message);
+};
+
 module.exports = {
   listPassengers,
   getPassenger,
   createProduct,
+  updateProduct,
 };

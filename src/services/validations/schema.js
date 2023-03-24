@@ -10,7 +10,13 @@ const saleSchema = Joi.object({
   'number.min': '{{#label}} must be greater than or equal to 1',
 });
 
+const updateProduct = Joi.object({
+  name: Joi.string().required(),
+  id: Joi.number().min(1).required(),
+});
+
 module.exports = {
   idSchema,
   saleSchema,
+  updateProduct,
 };
